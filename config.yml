@@ -1,0 +1,31 @@
+#embedColor - The color you want the embeds on your bot to be.
+#embedFooter - The footer you want the bot to have
+#embedImage - The image you want on the thumbnail and footer of the embed.
+embedColor: "#79b8e0"
+embedFooter: "Stitch Bot"
+embedImage: "https://media.discordapp.net/attachments/1114956570552455292/1348747125789294633/siiitch.png?ex=67d09625&is=67cf44a5&hm=a948e6d871c88e4baf02580e1728f6c49b432e1eaec1341415e76a1b0774905a&=&format=webp&quality=lossless"
+
+#panelEmbedTitle - The title of the embed you want users to react to in order to create a ticket.
+#panelEmbedDescription - The description of the embed you want users to react to in order to create a ticket.
+panelEmbedTitle: "Create A Ticket 🎫"
+panelEmbedDescription: "Click the button below to get in contact with staff!"
+
+#ticketSuffix - The name of the channel for tickets (ex: support-jennifxrr)
+#ticketWelcome - The message you would like to send in the ticket channel when the user creates a ticket.
+#ticketPermissions - The IDs of the roles that you would like to have access to the tickets (staff roles)
+#ticketCategory - The name of the category you would like tickets to be sent into. 
+#ticketLogsChannel - The name or ID of the channel you would like transcripts to send to. 
+#ticketButtonName - The name of the button users have to react to in order to create a ticket.
+#ticketButtonEmoji - The emoji of the button users have to react to in order to create a ticket.
+#ticketButtonEmoji - The color of the button users have to react to in order to create a ticket. (grey, blue, red, green)
+ticketSuffix: "support"
+ticketWelcome: "You have created a **Support Ticket**. Please sit tight and fill out the format below and support staff will be with you ASAP!\n\n```IGN:\nIssue:```"
+ticketPermissions: ["1348770560754061334"]
+ticketCategory: "Support Tickets"
+ticketLogsChannel: "ticket-logs"
+ticketButtonName: "Support Ticket"
+ticketButtonEmoji: 🎫
+ticketButtonColor: "grey"
+
+#maxTickets - The max amount of tickets you can have open at once. 
+maxTickets: 2
