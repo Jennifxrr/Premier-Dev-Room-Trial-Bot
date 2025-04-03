@@ -1,5 +1,5 @@
 {
-  "name": "ticketbot",
+  "name": "premierbot",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,19 +9,11 @@
     "type": "git",
     "url": "git+https://github.com/Jennifxrr/BasicTicketBot.git"
   },
-  "author": "Jennifxrr",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Jennifxrr/BasicTicketBot/issues"
   },
   "homepage": "https://github.com/Jennifxrr/BasicTicketBot#readme",
-  "description": "",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "discord-html-transcripts": "^3.2.0",
-    "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7",
-    "js-yaml": "^4.1.0",
-    "mongoose": "^8.12.1"
-  }
+  "description": ""
 }

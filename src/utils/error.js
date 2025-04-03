@@ -1,10 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
 
-module.exports = (title, description) => {
+module.exports = (description) => {
 
 	const embed = new EmbedBuilder()
-		.setTitle(`Error: ${title}`)
-		.setDescription(`${description}`)
+		.setDescription(`**Error**: ${description}`)
 		.setColor('#e60000');
 
 	return embed;
