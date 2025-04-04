@@ -1,5 +1,6 @@
-const permissionModel = require('../../schemas/perms');
 const { PermissionsBitField } = require('discord.js');
+const { readFileSync } = require('fs');
+const perms = JSON.parse(readFileSync('./configuration/permissions.json', 'utf8'));
 
 module.exports = {
 	name: 'interactionCreate',
@@ -25,23 +26,20 @@ module.exports = {
 			}
 		}
 
-		const permDoc = await permissionModel.findOne({
-			guildId: interaction.guild.id,
-			commandName: interaction.commandName,
-		});
-
-		if (!permDoc) {
-			const error = client.error('Permission Error!', `There are no permissions set up for the **${interaction.commandName}** command!`);
+		if (!perms[interaction.commandName]) {
+			const error = client.error(`There are no permissions set up for the **${interaction.commandName}** command!`);
 			return interaction.reply({ embeds: [error], flags: 64 });
 		}
 
-		if (!interaction.memberPermissions.has(PermissionsBitField.Flags.Administrator) && !interaction.member.roles.cache.find(r => permDoc.roles.includes(r.id))) {
-			const error = client.error('Permission Error!', `You do not have the permission to run the **${interaction.commandName}** command!`);
+		if (!interaction.memberPermissions.has(PermissionsBitField.Flags.Administrator) && !interaction.member.roles.cache.find(r => perms[interaction.commandName].perms.includes(r.id))) {
+			const error = client.error(`You do not have the permission to run the **${interaction.commandName}** command!`);
 			return interaction.reply({ embeds: [error], flags: 64 });
 		}
 
 
 		command.execute(client, interaction, args);
+
+		client.logger.info(`${interaction.user.username} has ran the /${interaction.commandName} command in ${interaction.guild.name}`);
 
 	},
 };

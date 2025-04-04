@@ -1,6 +1,5 @@
 const { readdirSync } = require('fs');
 const wait = require('node:timers/promises').setTimeout;
-const permissionModel = require('../schemas/perms');
 
 module.exports = async client => {
 
@@ -22,28 +21,16 @@ module.exports = async client => {
 			};
 
 			client.guilds.cache.forEach(guild => {
+
 				guild.commands.create(data)
 					.catch(() => {
 						return;
 					});
-			});
-
-			client.guilds.cache.forEach(async guild => {
-
-				client.commands.map(async (c) => {
-					const permissionDoc = await permissionModel.findOne({ guildId: guild.id, commandName: c.name });
-					if (!permissionDoc) {
-						await permissionModel.create({
-							guildId: guild.id,
-							commandName: c.name,
-							roles: [],
-						});
-					}
-				});
 
 			});
 
 		}
+
 	});
 
 	await wait(1000);

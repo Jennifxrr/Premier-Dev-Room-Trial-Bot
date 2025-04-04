@@ -1,0 +1,79 @@
+const { ApplicationCommandOptionType, PermissionsBitField } = require('discord.js');
+
+module.exports = {
+	name: 'kick',
+	description: 'Kick someone from the guild.',
+	options: [
+		{ name: 'user', type: ApplicationCommandOptionType.User, description: 'The user you would like to kick.', required: true },
+		{ name: 'reason', type: ApplicationCommandOptionType.String, description: 'The reason you are kicking the user.', required: true },
+	],
+	async execute(client, interaction) {
+
+		try {
+
+			const user = interaction.options.getUser('user');
+			const reason = interaction.options.getString('reason');
+
+			const member = await interaction.guild.members.fetch(user.id).catch(() => null);
+
+			if (!member) {
+				const error = client.error('I could not find that user to kick!');
+				return interaction.reply({ embeds: [error], flags: 64 });
+			}
+
+			if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.KickMembers)) {
+				const error = client.error('I do not have the permission to kick members!');
+				return interaction.reply({ embeds: [error], flags: 64 });
+			}
+
+			if (!member.kickable) {
+				const error = client.error('I am unable to kick that member!');
+				return interaction.reply({ embeds: [error], flags: 64 });
+			}
+
+			if (member.id == interaction.user.id) {
+				const error = client.error('You can not kick yourself!');
+				return interaction.reply({ embeds: [error], flags: 64 });
+			}
+
+			if (member.roles.highest.position >= interaction.member.roles.highest.position) {
+				const error = client.error('You can not kick someone with higher permissions than you!');
+				return interaction.reply({ embeds: [error], flags: 64 });
+			}
+
+			await member.kick(reason);
+
+			const title = client.config.kickTitle
+				.replace('{username}', user.username);
+
+			const description = client.config.kickDescription
+				.replace('{usermention}', user)
+				.replace('{username}', user.username)
+				.replace('{reason}', reason)
+				.replace('{moderatormention}', interaction.user)
+				.replace('{moderatorusername}', interaction.user.username);
+
+			const embed = client.embed()
+				.setThumbnail(user.displayAvatarURL())
+				.setTitle(title)
+				.setDescription(description.split('|').join('\n'));
+
+			interaction.reply({ embeds: [embed] });
+
+			client.logger.info(`I have kicked ${user.username} for ${reason}`);
+			const logsChannel = await interaction.guild.channels.cache.find(c => c.id === client.config.moderationLogs) || await interaction.guild.channels.cache.find(c => c.name === client.config.moderationLogs);
+
+			if (logsChannel) {
+				logsChannel.send({ embeds: [embed] });
+			}
+
+		}
+		catch (e) {
+			console.log(e);
+			const error = client.error('There was an error kicking the member! Please check the console for errors.');
+			return interaction.reply({ embeds: [error], flags: 64 });
+		}
+
+
+	},
+};

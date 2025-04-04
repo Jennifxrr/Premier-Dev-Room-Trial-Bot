@@ -1,0 +1,47 @@
+#embedColor - The color you want the embeds on your bot to be.
+#embedFooter - The footer you want the bot to have
+#embedImage - The image you want on the thumbnail and footer of the embed.
+embedColor: "#79b8e0"
+embedFooter: "Stitch Bot"
+embedImage: "https://media.discordapp.net/attachments/1114956570552455292/1348747125789294633/siiitch.png?ex=67d09625&is=67cf44a5&hm=a948e6d871c88e4baf02580e1728f6c49b432e1eaec1341415e76a1b0774905a&=&format=webp&quality=lossless"
+
+#----------------------------------------------------------------- [ BASIC COMMAND HANDLING ] -----------------------------------------------------------------------------------------
+
+#--- [ GREETING COMMAND ] ---
+#friendlyGreeting: The message you want to send when someone does the greeting command. 
+#emojiList: The list of emojis you would like to send with the message. (Note: It picks 1 random emoji each time!)
+friendlyGreeting: "Hello {username}! I am happy to greet you! {emoji}"
+emojiList: ["😀","😁","😂","🤣","😃","😄","😅","😆"]
+
+#-------------------------------------------------------------------- [ USER INTERACTION ] --------------------------------------------------------------------------------------------
+
+# --- [ USER INFO COMMAND ] ---
+#userInfoTitle: The way that you would like the embed title to be formatted for the user info command. 
+#userInfoDescription: The way that you would like the embed description to be formatted for the user info command (Use "|" to seperate lines). 
+userInfoTitle: 'User Information: {username}'
+userInfoDescription: '**User Information**|`Bot?:` {botstatus}|`Username:` {username}|`User ID:` {userid}|`Joined On:` {userjoin}|`User Roles`: {roles}'
+
+#-------------------------------------------------------------------- [ MODERATION TOOLS ] --------------------------------------------------------------------------------------------
+
+# --- [ KICK COMMAND ] ---
+#kickTitle: The way that you would like the embed title to be formatted for the kick command.
+#kickDescription: The way that you would like the embed description to be formatted for the kick command. (Use "|" to seperate lines). 
+kickTitle: 'User Kicked: {username}'
+kickDescription: '**User Kicked**|`User:` {usermention} ({username})|`Reason:` {reason}|`Moderator:` {moderatormention} ({moderatorusername})'
+
+# --- [ BAN COMMAND ] ---
+#banTitle: The way that you would like the embed title to be formatted for the ban command.
+#banDescription: The way that you would like the embed description to be formatted for the ban command. (Use "|" to seperate lines). 
+banTitle: 'User Banned: {username}'
+banDescription: '**User Banned**|`User:` {usermention} ({username})|`Reason:` {reason}|`Moderator:` {moderatormention} ({moderatorusername})'
+
+# --- [ MUTE COMMAND ] ---
+#muteTitle: The way that you would like the embed title to be formatted for the ban command.
+#muteDescription: The way that you would like the embed description to be formatted for the ban command. (Use "|" to seperate lines). 
+muteTitle: 'User Muted: {username}'
+muteDescription: '**User Muted**|`User:` {usermention} ({username})|`Reason:` {reason}|`Moderator:` {moderatormention} ({moderatorusername})|`Duration:` {duration}'
+
+#-------------------------------------------------------------------- [ LOGS ] --------------------------------------------------------------------------------------------
+
+#moderationLogs: The ID or name of the channel where all moderation actions will be logged by the bot.
+moderationLogs: ticket-logs
