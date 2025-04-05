@@ -44,4 +44,4 @@ muteDescription: '**User Muted**|`User:` {usermention} ({username})|`Reason:` {r
 #-------------------------------------------------------------------- [ LOGS ] --------------------------------------------------------------------------------------------
 
 #moderationLogs: The ID or name of the channel where all moderation actions will be logged by the bot.
-moderationLogs: ticket-logs
+moderationLogs: logs

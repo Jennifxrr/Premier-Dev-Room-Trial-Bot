@@ -31,7 +31,7 @@ module.exports = {
 			return interaction.reply({ embeds: [error], flags: 64 });
 		}
 
-		if (!interaction.memberPermissions.has(PermissionsBitField.Flags.Administrator) && !interaction.member.roles.cache.find(r => perms[interaction.commandName].perms.includes(r.id))) {
+		if (!interaction.memberPermissions.has(PermissionsBitField.Flags.Administrator) && !interaction.member.roles.cache.find(r => perms[interaction.commandName].roles.includes(r.id))) {
 			const error = client.error(`You do not have the permission to run the **${interaction.commandName}** command!`);
 			return interaction.reply({ embeds: [error], flags: 64 });
 		}
