@@ -1,4 +1,5 @@
 const Welcome = require('../../models/welcome');
+const color = require('chalk');
 
 module.exports = {
 	name: 'guildMemberAdd',
